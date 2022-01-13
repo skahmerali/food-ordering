@@ -236,7 +236,7 @@ app.post('/api/v1/webhook-alexa', adapter.getRequestHandlers());
 
 app.use(express.json())
 app.get('/', (req, res, next) => {
-  res.send("this is a profile");
+  res.send("this is a sk profile");
 });
 
 app.listen(PORT, () => {
