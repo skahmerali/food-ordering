@@ -44,13 +44,13 @@ const LaunchRequestHandler = {
       clientName: "saylani class",
     }).save();
 
-    const speakOutput = 'Welcome to kababjees, I am your virtual assistant. you can ask for the menu';
+    const speakOutput = 'Welcome to Sk Restaurant, I am your virtual assistant. you can ask for the menu';
     const reprompt = 'I am your virtual assistant. you can ask for the menu';
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
       .reprompt(reprompt)
-      .withSimpleCard("Kababjees", speakOutput)
+      .withSimpleCard("Sk Restaurant", speakOutput)
       .getResponse();
   }
 };
