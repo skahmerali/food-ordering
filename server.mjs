@@ -62,10 +62,9 @@ const LaunchRequestHandler = {
 };
 const showMenuHandler = {
   canHandle(handlerInput) {
-    return 
-    (Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-      && Alexa.getIntentName(handlerInput.requestEnvelope) === 'showMenu'
-      )
+    returnAlexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+      && Alexa.getIntentName(handlerInput.requestEnvelope) === 'showMenu';
+      
   },
   handle(handlerInput) {
     const speakOutput = 'In the menu, we have Beef kabab, Mutton kabab, Chicken Reshmi kabab, Gola kabab and Seekh kabab. which one would you like to order?';
