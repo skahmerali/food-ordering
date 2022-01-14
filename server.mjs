@@ -6,11 +6,17 @@ import mongoose from 'mongoose';
 import axios from "axios";
 
 mongoose.connect('mongodb+srv://ahmerali:ahmerali@cluster0.slkv6.mongodb.net/ahmerali');
-  
 
 const Usage = mongoose.model('Usage', {
   skillName: String,
   clientName: String,
+  createdOn: { type: Date, default: Date.now },
+});
+const Cart = mongoose.model("Cart", {
+  clientName: String,
+  clientEmail: String,
+  dishName: String,
+  qty: Number,
   createdOn: { type: Date, default: Date.now },
 });
 
@@ -41,23 +47,25 @@ const LaunchRequestHandler = {
 
     var newUsage = new Usage({
       skillName: "food ordering skill",
-      clientName: "saylani ChatBot class",
+      clientName: "saylani class",
     }).save();
 
-    const speakOutput = 'Welcome to Sk Restaurant, I am your virtual assistant. you can ask for the menu';
+    const speakOutput = 'Welcome to kababjees, I am your virtual assistant. you can ask for the menu';
     const reprompt = 'I am your virtual assistant. you can ask for the menu';
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
       .reprompt(reprompt)
-      .withSimpleCard("Sk Restaurant", speakOutput)
+      .withSimpleCard("Kababjees", speakOutput)
       .getResponse();
   }
 };
 const showMenuHandler = {
   canHandle(handlerInput) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-      && Alexa.getIntentName(handlerInput.requestEnvelope) === 'showMenu';
+    return 
+    (Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+      && Alexa.getIntentName(handlerInput.requestEnvelope) === 'showMenu'
+      )
   },
   handle(handlerInput) {
     const speakOutput = 'In the menu, we have Beef kabab, Mutton kabab, Chicken Reshmi kabab, Gola kabab and Seekh kabab. which one would you like to order?';
@@ -83,7 +91,7 @@ const deviceIdHandler = {
     let deviceId = Alexa.getDeviceId(handlerInput.requestEnvelope)
     let userId = Alexa.getUserId(handlerInput.requestEnvelope)
 
-    console.log("deviceId: ", deviceId); 
+    console.log("deviceId: ", deviceId); // amzn1.ask.device.AEIIZKO24SOSURK7U32HYTGXRQND5VMWQTKZDZOVVKFVIBTHIDTGJNXGQLO5TKAITDM756X5AHOESWLLKZADIMJOAM43RKPADYXEHRMI7V6ESJPWWHE34E37GPJHHG2UVZSTUKF3XJUWD5FINAUTKIB5QBIQ
     const speakOutput = `your device id is: ${deviceId} \n\n\nand your user id is: ${userId}`
 
     return handlerInput.responseBuilder
@@ -190,8 +198,14 @@ const PlaceOrderIntentHandler = {
 
       const email = responseArray[0].data;
       const name = responseArray[1].data;
+      var newOrder = new Cart({
+        clientName: name,
+        clientEmail: email,
+        dishName: dishName,
+        qty: qty,
+      }).save();
+      
       console.log("email: ", email);
-
       if (!email) {
         return handlerInput.responseBuilder
           .speak(`looks like you dont have an email associated with this device, please set your email in Alexa App Settings`)
@@ -235,8 +249,8 @@ const adapter = new ExpressAdapter(skill, false, false);
 app.post('/api/v1/webhook-alexa', adapter.getRequestHandlers());
 
 app.use(express.json())
-app.get('/', (req, res, next) => {
-  res.send("this is a sk profile");
+app.get('/profile', (req, res, next) => {
+  res.send("this is a profile");
 });
 
 app.listen(PORT, () => {
