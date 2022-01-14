@@ -152,10 +152,10 @@ const EmailIntentHandler = {
   }
 }
 
-const PlaceOrderIntentHandler = {
+const placeOrderHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'PlaceOrder';
+      && handlerInput.requestEnvelope.request.intent.name === 'placeOrder';
   },
   async handle(handlerInput) {
 
@@ -171,11 +171,6 @@ const PlaceOrderIntentHandler = {
 
     console.log("dishName: ", dishName);
     console.log("qty: ", qty);
-
-
-
-
-
 
 
     const { serviceClientFactory, responseBuilder } = handlerInput;
@@ -237,7 +232,7 @@ const skillBuilder = SkillBuilders.custom()
     showMenuHandler,
     EmailIntentHandler,
     deviceIdHandler,
-    PlaceOrderIntentHandler
+    placeOrderHandler
   )
   .addErrorHandlers(
     ErrorHandler
