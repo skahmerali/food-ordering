@@ -1,11 +1,8 @@
 {
   "interactionModel": {
     "languageModel": {
-<<<<<<< HEAD
-      "invocationName": "malik restaurant",
-=======
       "invocationName": "sk restaurant",
->>>>>>> e53f2ef93d10624be9cc134cc39c2a118187692a
+     
       "intents": [
         {
           "name": "AMAZON.CancelIntent",

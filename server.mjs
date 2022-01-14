@@ -41,7 +41,7 @@ const LaunchRequestHandler = {
 
     var newUsage = new Usage({
       skillName: "food ordering skill",
-      clientName: "saylani class",
+      clientName: "saylani ChatBot class",
     }).save();
 
     const speakOutput = 'Welcome to Sk Restaurant, I am your virtual assistant. you can ask for the menu';
@@ -83,7 +83,7 @@ const deviceIdHandler = {
     let deviceId = Alexa.getDeviceId(handlerInput.requestEnvelope)
     let userId = Alexa.getUserId(handlerInput.requestEnvelope)
 
-    console.log("deviceId: ", deviceId); // amzn1.ask.device.AEIIZKO24SOSURK7U32HYTGXRQND5VMWQTKZDZOVVKFVIBTHIDTGJNXGQLO5TKAITDM756X5AHOESWLLKZADIMJOAM43RKPADYXEHRMI7V6ESJPWWHE34E37GPJHHG2UVZSTUKF3XJUWD5FINAUTKIB5QBIQ
+    console.log("deviceId: ", deviceId); 
     const speakOutput = `your device id is: ${deviceId} \n\n\nand your user id is: ${userId}`
 
     return handlerInput.responseBuilder
