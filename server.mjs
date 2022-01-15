@@ -62,7 +62,7 @@ const LaunchRequestHandler = {
 };
 const showMenuHandler = {
   canHandle(handlerInput) {
-    returnAlexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
       && Alexa.getIntentName(handlerInput.requestEnvelope) === 'showMenu';
       
   },
