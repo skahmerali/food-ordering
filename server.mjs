@@ -152,10 +152,10 @@ const EmailIntentHandler = {
   }
 }
 
-const placeOrderHandler = {
+const PlaceOrderHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'placeOrder';
+      && handlerInput.requestEnvelope.request.intent.name === 'PlaceOrder';
   },
   async handle(handlerInput) {
 
@@ -232,7 +232,7 @@ const skillBuilder = SkillBuilders.custom()
     showMenuHandler,
     EmailIntentHandler,
     deviceIdHandler,
-    placeOrderHandler
+    PlaceOrderHandler
   )
   .addErrorHandlers(
     ErrorHandler
