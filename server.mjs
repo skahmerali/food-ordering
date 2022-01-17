@@ -145,7 +145,7 @@ const EmailIntentHandler = {
 
       if (error.response.status === 403) {
         return responseBuilder
-          .speak('I am Unable to read your email. Please goto Alexa app and then goto Malik Resturant Skill and Grant Profile Permissions to this skill')
+          .speak('I am Unable to read your email. Please goto Alexa app and then goto SK Resturant Skill and Grant Profile Permissions to this skill')
           .withAskForPermissionsConsentCard(["alexa::profile:email:read"]) // https://developer.amazon.com/en-US/docs/alexa/custom-skills/request-customer-contact-information-for-use-in-your-skill.html#sample-response-with-permissions-card
           .getResponse();
       }
